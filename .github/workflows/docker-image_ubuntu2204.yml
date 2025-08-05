@@ -1,0 +1,75 @@
+name: Docker Container for Ubuntu 22.04 LTS
+
+on:
+  workflow_dispatch:
+    inputs:
+      gh_actor_message:
+        default: Test RUN
+        required: true
+        description: Actor message
+        type: string
+      gh_debug_proceeds_print_dockerhub_credential:
+        description: 'proceeds print_dockerhub_credential'
+        required: true
+        type: boolean
+  push:
+    paths:
+      - "ubuntu2204/**"
+      - ".github/workflows/docker-image_ubuntu2204.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  send_github_context:
+    uses: n138-kz/n138-kz/.github/workflows/github-act_send_github_context.yml@main
+    secrets: inherit # pass all secrets
+
+  docker_login:
+    uses: n138-kz/n138-kz/.github/workflows/github-act_docker_login.yml@main
+    secrets: inherit # pass all secrets
+
+  print_dockerhub_credential:
+    runs-on: ubuntu-latest
+    needs: docker_login
+    if: ${{ inputs.gh_debug_proceeds_print_dockerhub_credential }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send Discord
+        env:
+          discord_avatar_url: https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png
+          discord_username: Github-Actions
+        run: |
+          curl -X POST \
+            -H 'Content-Type:application/json' \
+            -d '{"avatar_url":"${{ env.discord_avatar_url }}","username":"${{ env.discord_username }}","embeds":[{"title":"docker-hub","url":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}","color":'$((16#ffa500))',"description":"[[${{ github.event.repository.name }}]](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) || ${{ secrets.docker_credential_password }} ||"}]}' \
+            ${{ secrets.discord_webhook_url }} | jq;
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the Image
+        working-directory: ubuntu2204
+        run: |
+          docker build \
+          --no-cache \
+          --progress=plain \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:22 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:2204 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:22.04 \
+          .
+
+      - name: Inspect the Image
+        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2204 | jq
+
+      - name: docker login
+        run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
+
+      - name: Image push
+        run: docker push --all-tags ${{ vars.docker_credential_username }}/ubuntu
