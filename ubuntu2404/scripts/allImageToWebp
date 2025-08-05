@@ -1,0 +1,47 @@
+#!/bin/sh
+
+echo 'Working directory: '$(pwd)
+
+echo -n '\e[0;33m'
+echo -n 'Checking exist `_trash` directory... '
+echo -n '\e[m';
+if [ -d "_trash" ] ;then
+    echo -n '\e[1;32m';
+    echo -n 'OK';
+    echo '\e[m';
+else
+    echo -n '\e[0;33m'
+    echo -n 'Creating... '
+    echo -n '\e[m';
+    echo -n $(mkdir -p _trash);
+
+    if [ -d "_trash" ] ;then
+        echo -n '\e[1;32m';
+        echo -n 'OK';
+        echo '\e[m';
+    fi
+fi
+
+rename -v 's/\?.*//g' *
+
+for i in *.png *.jpg G*; do
+    if [ ! -f "${i}" ] ;then
+        echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
+        continue;
+    fi
+    echo -n '\e[1;32m';
+    echo -n $(pwd)/${i};
+    echo '\e[m';
+    LC_ALL=C ffmpeg \
+        -hide_banner \
+        -i "${i}" \
+        -y  "${i%.*}.webp" && \
+        LC_ALL=C mv "${i}" _trash/;
+done
+
+mv wget-log* _trash/
+
+uid=1000
+gid=${uid}
+chown -R ${uid} ./
+chgrp -R ${gid} ./
