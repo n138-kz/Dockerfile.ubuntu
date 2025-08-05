@@ -1,0 +1,44 @@
+#!/bin/bash
+set -e
+
+usage() {
+    echo "Usage: $0 video_m3u8 [audio_m3u8]"
+    echo "  video_m3u8 : 動画用 m3u8 ファイルのパスまたは URL"
+    echo "  audio_m3u8 : （オプション）音声用 m3u8 ファイルのパスまたは URL"
+    exit 1
+}
+
+if [ "$#" -lt 1 ]; then
+    usage
+fi
+
+VIDEO_M3U8="$1"
+AUDIO_M3U8="$2"
+
+# 動画 m3u8 のファイル名から拡張子を除いた名前を取得し、最終出力ファイル名を設定
+BASE=$(basename "$VIDEO_M3U8")
+OUTPUT_MP4="${BASE%.*}.mp4"
+
+VIDEO_TS="video.ts"
+AUDIO_TS="audio.ts"
+
+echo "【動画ストリームの読み込み】"
+ffmpeg -protocol_whitelist "file,crypto,http,https,data,tls,tcp" -i "$VIDEO_M3U8" -c copy "$VIDEO_TS"
+
+if [ -n "$AUDIO_M3U8" ]; then
+    echo "【音声ストリームの読み込み】"
+    ffmpeg -protocol_whitelist "file,crypto,http,https,data,tls,tcp" -i "$AUDIO_M3U8" -c copy "$AUDIO_TS"
+
+    echo "【動画と音声を結合して MP4 に変換】"
+    ffmpeg -protocol_whitelist "file,crypto,http,https,data,tls,tcp" -i "$VIDEO_TS" -i "$AUDIO_TS" -c:v copy -c:a aac "$OUTPUT_MP4"
+
+    # TS ファイルの削除
+    rm "$VIDEO_TS" "$AUDIO_TS"
+else
+    echo "【音声用 m3u8 が指定されなかったため、動画のみを MP4 に変換】"
+    ffmpeg -protocol_whitelist "file,crypto,http,https,data,tls,tcp" -i "$VIDEO_TS" -c copy "$OUTPUT_MP4"
+    rm "$VIDEO_TS"
+fi
+
+echo "最終出力ファイル: $OUTPUT_MP4"
+
