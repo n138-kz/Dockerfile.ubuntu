@@ -29,8 +29,12 @@ for i in *.png *.jpg G*; do
         echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
         continue;
     fi
-    echo -n '\e[1;32m';
-    echo -n $(pwd)/${i};
+    echo -n '\e[1;34m';
+    echo -n $(dirname $(pwd))/;
+    echo -n '\e[1;33m';
+    echo -n $(basename $(pwd))/;
+    echo -n '\e[1;36m';
+    echo -n ${i};
     echo '\e[m';
     LC_ALL=C ffmpeg \
         -hide_banner \
