@@ -53,8 +53,6 @@ jobs:
 
   iso8601:
     runs-on: ubuntu-latest
-    env:
-      ISO_DATE: ""
     outputs:
       iso_date: ${{ steps.set_date.outputs.iso_date }}
     steps:
