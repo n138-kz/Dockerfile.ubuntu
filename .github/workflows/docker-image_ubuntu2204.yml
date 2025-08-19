@@ -84,6 +84,9 @@ jobs:
       - name: Inspect the Image
         run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2204 | jq
 
+      - name: Check env
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2204 env
+
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
 
