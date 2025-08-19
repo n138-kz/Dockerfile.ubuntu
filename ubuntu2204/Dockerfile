@@ -1,6 +1,6 @@
+FROM ubuntu:22.04
 ARG build_at
 
-FROM ubuntu:22.04
 WORKDIR /tmp
 
 ENV DEBIAN_FRONTEND=noninteractive
