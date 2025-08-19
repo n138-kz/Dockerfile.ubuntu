@@ -1,7 +1,10 @@
 FROM ubuntu:24.04
+ARG build_at
+
 WORKDIR /tmp
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV build_at=${build_at}
 
 RUN set -x && apt-get update && apt-get upgrade -y
 RUN set -x && apt-get install -y man

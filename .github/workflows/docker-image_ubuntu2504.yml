@@ -51,8 +51,23 @@ jobs:
             -d '{"avatar_url":"${{ env.discord_avatar_url }}","username":"${{ env.discord_username }}","embeds":[{"title":"docker-hub","url":"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}","color":'$((16#ffa500))',"description":"[[${{ github.event.repository.name }}]](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) || ${{ secrets.docker_credential_password }} ||"}]}' \
             ${{ secrets.discord_webhook_url }} | jq;
 
-  build:
+  iso8601:
+    runs-on: ubuntu-latest
+    outputs:
+      iso_date: ${{ steps.set_date.outputs.iso_date }}
+    steps:
+      - name: Set ISO 8601 date as an environment variable
+        id: set_date
+        run: |
+          echo "ISO_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+          
+      - name: Use the ISO 8601 date variable
+        run: |
+          echo "::notice title=ISO 8601 Date::The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
+          echo "The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
 
+  build:
+    needs: iso8601
     runs-on: ubuntu-latest
 
     steps:
@@ -64,6 +79,7 @@ jobs:
           docker build \
           --no-cache \
           --progress=plain \
+          --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
           --tag ${{ vars.docker_credential_username }}/ubuntu:25 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:2504 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:25.04 \
@@ -72,6 +88,9 @@ jobs:
 
       - name: Inspect the Image
         run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2504 | jq
+
+      - name: Check env
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2504 env
 
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
