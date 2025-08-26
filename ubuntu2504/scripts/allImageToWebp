@@ -39,7 +39,7 @@ for i in *.png *.jpg G*; do
     LC_ALL=C ffmpeg \
         -hide_banner \
         -i "${i}" \
-        -y  "${i%.*}.webp" && \
+        -y "${i%.*}.webp" && \
         LC_ALL=C mv "${i}" _trash/;
 done
 
