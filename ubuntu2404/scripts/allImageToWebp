@@ -24,6 +24,17 @@ fi
 
 rename -v 's/\?.*//g' *
 
+find -name '*.AVIF' -exec rename .AVIF .avif {} \;
+find -name '*.WEBP' -exec rename .WEBP .webp {} \;
+find -name '*.HEIC' -exec rename .HEIC .heic {} \;
+find -name '*.jpeg' -exec rename .jpeg  .jpg {} \;
+find -name '*.jeif' -exec rename .jeif  .jpg {} \;
+find -name '*.JPEG' -exec rename .JPEG  .jpg {} \;
+find -name '*.JEIF' -exec rename .JEIF  .jpg {} \;
+find -name '*.JPG'  -exec rename  .JPG  .jpg {} \;
+find -name '*.PNG'  -exec rename  .PNG  .png {} \;
+find -name '*.GIF'  -exec rename  .GIF  .gif {} \;
+
 for i in *.heic; do
     if [ ! -f "${i}" ] ;then
         echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
