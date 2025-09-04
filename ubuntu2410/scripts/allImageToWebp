@@ -22,57 +22,61 @@ else
     fi
 fi
 
-rename -v 's/\?.*//g' *
+if [ $(jobs|wc -l) -eq 0 ] ; then
 
-find -name '*.AVIF' -exec rename .AVIF .avif {} \;
-find -name '*.WEBP' -exec rename .WEBP .webp {} \;
-find -name '*.HEIC' -exec rename .HEIC .heic {} \;
-find -name '*.jpeg' -exec rename .jpeg  .jpg {} \;
-find -name '*.jeif' -exec rename .jeif  .jpg {} \;
-find -name '*.JPEG' -exec rename .JPEG  .jpg {} \;
-find -name '*.JEIF' -exec rename .JEIF  .jpg {} \;
-find -name '*.JPG'  -exec rename  .JPG  .jpg {} \;
-find -name '*.PNG'  -exec rename  .PNG  .png {} \;
-find -name '*.GIF'  -exec rename  .GIF  .gif {} \;
+    rename -v 's/\?.*//g' *
 
-for i in *.heic; do
-    if [ ! -f "${i}" ] ;then
-        echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
-        continue;
-    fi
-    echo -n '\e[1;34m';
-    echo -n $(dirname $(pwd))/;
-    echo -n '\e[1;33m';
-    echo -n $(basename $(pwd))/;
-    echo -n '\e[1;36m';
-    echo -n ${i};
-    echo '\e[m';
-    LC_ALL=C convert \
-        "${i}" \
-        "${i//.heic/.png}" && \
-        LC_ALL=C mv "${i}" _trash/;
-done
+    find -name '*.AVIF' -exec rename .AVIF .avif {} \;
+    find -name '*.WEBP' -exec rename .WEBP .webp {} \;
+    find -name '*.HEIC' -exec rename .HEIC .heic {} \;
+    find -name '*.jpeg' -exec rename .jpeg  .jpg {} \;
+    find -name '*.jeif' -exec rename .jeif  .jpg {} \;
+    find -name '*.JPEG' -exec rename .JPEG  .jpg {} \;
+    find -name '*.JEIF' -exec rename .JEIF  .jpg {} \;
+    find -name '*.JPG'  -exec rename  .JPG  .jpg {} \;
+    find -name '*.PNG'  -exec rename  .PNG  .png {} \;
+    find -name '*.GIF'  -exec rename  .GIF  .gif {} \;
 
-for i in *.png *.jpg G*; do
-    if [ ! -f "${i}" ] ;then
-        echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
-        continue;
-    fi
-    echo -n '\e[1;34m';
-    echo -n $(dirname $(pwd))/;
-    echo -n '\e[1;33m';
-    echo -n $(basename $(pwd))/;
-    echo -n '\e[1;36m';
-    echo -n ${i};
-    echo '\e[m';
-    LC_ALL=C ffmpeg \
-        -hide_banner \
-        -i "${i}" \
-        -y "${i%.*}.webp" && \
-        LC_ALL=C mv "${i}" _trash/;
-done
+    for i in *.heic; do
+        if [ ! -f "${i}" ] ;then
+            echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
+            continue;
+        fi
+        echo -n '\e[1;34m';
+        echo -n $(dirname $(pwd))/;
+        echo -n '\e[1;33m';
+        echo -n $(basename $(pwd))/;
+        echo -n '\e[1;36m';
+        echo -n ${i};
+        echo '\e[m';
+        LC_ALL=C convert \
+            "${i}" \
+            "${i//.heic/.png}" && \
+            LC_ALL=C mv "${i}" _trash/;
+    done
 
-mv wget-log* _trash/
+    for i in *.png *.jpg G*; do
+        if [ ! -f "${i}" ] ;then
+            echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
+            continue;
+        fi
+        echo -n '\e[1;34m';
+        echo -n $(dirname $(pwd))/;
+        echo -n '\e[1;33m';
+        echo -n $(basename $(pwd))/;
+        echo -n '\e[1;36m';
+        echo -n ${i};
+        echo '\e[m';
+        LC_ALL=C ffmpeg \
+            -hide_banner \
+            -i "${i}" \
+            -y "${i%.*}.webp" && \
+            LC_ALL=C mv "${i}" _trash/;
+    done
+
+    mv wget-log* _trash/
+
+fi
 
 uid=1000
 gid=${uid}
