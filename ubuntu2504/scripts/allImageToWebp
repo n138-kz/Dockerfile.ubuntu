@@ -49,7 +49,7 @@ if [ $(jobs|wc -l) -eq 0 ] ; then
         echo -n '\e[1;36m';
         echo -n ${i};
         echo '\e[m';
-        LC_ALL=C convert \
+        convert \
             "${i}" \
             "${i//.heic/.png}" && \
             LC_ALL=C mv "${i}" _trash/;
