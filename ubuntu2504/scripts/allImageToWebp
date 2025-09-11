@@ -26,16 +26,16 @@ if [ $(jobs|wc -l) -eq 0 ] ; then
 
     rename -v 's/\?.*//g' *
 
-    find -name '*.AVIF' -exec rename .AVIF .avif {} \;
-    find -name '*.WEBP' -exec rename .WEBP .webp {} \;
-    find -name '*.HEIC' -exec rename .HEIC .heic {} \;
-    find -name '*.jpeg' -exec rename .jpeg  .jpg {} \;
-    find -name '*.jeif' -exec rename .jeif  .jpg {} \;
-    find -name '*.JPEG' -exec rename .JPEG  .jpg {} \;
-    find -name '*.JEIF' -exec rename .JEIF  .jpg {} \;
-    find -name '*.JPG'  -exec rename  .JPG  .jpg {} \;
-    find -name '*.PNG'  -exec rename  .PNG  .png {} \;
-    find -name '*.GIF'  -exec rename  .GIF  .gif {} \;
+    find -name '*.AVIF' -exec rename 's/.AVIF/.avif/g' {} \;
+    find -name '*.WEBP' -exec rename 's/.WEBP/.webp/g' {} \;
+    find -name '*.HEIC' -exec rename 's/.HEIC/.heic/g' {} \;
+    find -name '*.jpeg' -exec rename 's/.jpeg/.jpg/g'  {} \;
+    find -name '*.jeif' -exec rename 's/.jeif/.jpg/g'  {} \;
+    find -name '*.JPEG' -exec rename 's/.JPEG/.jpg/g'  {} \;
+    find -name '*.JEIF' -exec rename 's/.JEIF/.jpg/g'  {} \;
+    find -name '*.JPG'  -exec rename 's/.JPG/.jpg/g'   {} \;
+    find -name '*.PNG'  -exec rename 's/.PNG/.png/g'   {} \;
+    find -name '*.GIF'  -exec rename 's/.GIF/.gif/g'   {} \;
 
     for i in *.heic; do
         if [ ! -f "${i}" ] ;then
@@ -49,7 +49,7 @@ if [ $(jobs|wc -l) -eq 0 ] ; then
         echo -n '\e[1;36m';
         echo -n ${i};
         echo '\e[m';
-        LC_ALL=C convert \
+        convert \
             "${i}" \
             "${i//.heic/.png}" && \
             LC_ALL=C mv "${i}" _trash/;
