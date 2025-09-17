@@ -1,0 +1,4 @@
+LTS standard security maintenance for Ubuntu Main: Apr 2022 - Apr 2027
+LTS Expanded Security Maintenance (ESM) for Ubuntu Universe: Apr 2022 - Apr 2032
+Expanded Security Maintenance: Apr 2027 - Apr 2032
+Legacy support: Apr 2032 - Apr 2034
