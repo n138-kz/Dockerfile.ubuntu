@@ -56,8 +56,8 @@ if [ $(jobs|wc -l) -eq 0 ] ; then
     done
 
     for i in *.png *.jpg G*; do
-        if [ ! -f "${i}" ] ;then
-            echo '\e[1;31mFile or Directory has not found: '${i}'\e[m'
+        if [ ! -f "${i}" ];then
+            echo '\e[1;31mFile or Directory has not found: '${i}'\e[m';
             continue;
         fi
         echo -n '\e[1;34m';
