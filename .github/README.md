@@ -46,10 +46,10 @@
 
 [The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)
 
-| | Released | End of Standard Support | End of Ubuntu Pro Support | End of Legacy Support |
-|--------|--------|--------|--------|--------|
+| | Released | End of Standard<br>Support | End of Ubuntu<br>Pro Support | End of Legacy<br>Support |
+|--------|:------:|:------:|:------:|:------:|
 | 25.04 (Plucky Puffin) | Apr 2025 | Jan 2026 | | |
-| 24.10 (Oracular Oriole) | Oct 2024 | Jul 2025 | | |
+| 24.10 (Oracular Oriole) | Oct 2024 | Jul 2025<br>***EOL*** | | |
 | 24.04 LTS (Noble Numbat) | Apr 2024 | Apr 2029 | Apr 2034 | Apr 2036 |
 | 22.04 LTS (Jammy Jellyfish) | Apr 2022 | Apr 2027 | Apr 2032 | Apr 2034 | 
 
