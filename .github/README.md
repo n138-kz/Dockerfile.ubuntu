@@ -42,6 +42,17 @@
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile](https://github.com/n138-kz/Dockerfile) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu)](https://github.com/n138-kz/Dockerfile)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile.ubuntu](https://github.com/n138-kz/Dockerfile.ubuntu) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu)](https://github.com/n138-kz/Dockerfile.ubuntu)
 
+## lifecycle
+
+[The Ubuntu lifecycle and release cadence](https://ubuntu.com/about/release-cycle)
+
+| | Released | End of Standard Support | End of Ubuntu Pro Support | End of Legacy Support |
+|--------|--------|--------|--------|--------|
+| 25.04 (Plucky Puffin) | Apr 2025 | Jan 2026 | | |
+| 24.10 (Oracular Oriole) | Oct 2024 | Jul 2025 | | |
+| 24.04 LTS (Noble Numbat) | Apr 2024 | Apr 2029 | Apr 2034 | Apr 2036 |
+| 22.04 LTS (Jammy Jellyfish) | Apr 2022 | Apr 2027 | Apr 2032 | Apr 2034 | 
+
 ## Images
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://docker.com/)Docker Hub](https://hub.docker.com/r/n138kz/ubuntu/tags) ![Docker Image Version](https://img.shields.io/docker/v/n138kz/ubuntu)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com/)ubuntu2204](n138-kz/ubuntu2204)
