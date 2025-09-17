@@ -60,8 +60,8 @@ if [ $(jobs|wc -l) -eq 0 ] ; then
             echo '\e[1;31mFile or Directory has not found: '${i}'\e[m';
             continue;
         fi
-        if [ "${i}" == "${i%.*}.webp" ];then
             echo '\e[1;31mFile has alredy exist: '${i}'\e[m';
+        if [ "${i}" = "${i%.*}.webp" ];then
             continue;
         fi
         echo -n '\e[1;34m';
