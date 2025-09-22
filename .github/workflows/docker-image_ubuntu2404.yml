@@ -71,7 +71,7 @@ jobs:
       - name: Cloning the `Dockerfile.ubuntu.scripts`
         working-directory: ubuntu2404
         run: |
-          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv Dockerfile.ubuntu.scripts scripts
+          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts
 
   build:
     needs: iso8601
