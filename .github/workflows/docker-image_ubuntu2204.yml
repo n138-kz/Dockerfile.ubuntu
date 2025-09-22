@@ -72,7 +72,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: $BASEDIR
+        working-directory: ${BASEDIR}
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
@@ -86,11 +86,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Creating the directory=scripts
-        working-directory: $BASEDIR
+        working-directory: ${BASEDIR}
         run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
-        working-directory: $BASEDIR/scripts
+        working-directory: ${BASEDIR}/scripts
         run: |
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
@@ -109,21 +109,21 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: $BASEDIR
+        working-directory: ${BASEDIR}
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
-        working-directory: $BASEDIR/scripts
+        working-directory: ${BASEDIR}/scripts
         run: |
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
       - name: Display the Tree
-        working-directory: $BASEDIR
+        working-directory: ${BASEDIR}
         run: tree -a
 
       - name: Build the Image
-        working-directory: $BASEDIR
+        working-directory: ${BASEDIR}
         run: |
           docker build \
           --no-cache \
