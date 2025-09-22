@@ -109,6 +109,11 @@ jobs:
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
+      - name: Cloning the `yt-dlp`
+        working-directory: ubuntu2404/scripts
+        run: |
+          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+
       - name: Display the Tree
         run: tree -a
 
