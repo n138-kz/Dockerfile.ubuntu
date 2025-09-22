@@ -1,7 +1,7 @@
 name: Docker Container for Ubuntu 25.04
 
 env:
-  - basedir: ubuntu2504
+  basedir: ubuntu2504
 
 on:
   workflow_dispatch:

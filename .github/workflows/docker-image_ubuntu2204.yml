@@ -1,7 +1,7 @@
 name: Docker Container for Ubuntu 22.04 LTS
 
 env:
-  - basedir: ubuntu2204
+  basedir: ubuntu2204
 
 on:
   workflow_dispatch:

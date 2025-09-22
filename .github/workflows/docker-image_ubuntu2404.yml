@@ -1,7 +1,7 @@
 name: Docker Container for Ubuntu 24.04 LTS
 
 env:
-  - basedir: ubuntu2404
+  basedir: ubuntu2404
 
 on:
   workflow_dispatch:
