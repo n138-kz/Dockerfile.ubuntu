@@ -80,6 +80,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Cloning the `Dockerfile.ubuntu.scripts`
+        working-directory: ubuntu2404
+        run: |
+          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts
+
       - name: Display the Tree
         run: tree -a
 
