@@ -77,6 +77,17 @@ jobs:
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts
 
+  PreCheck_yt-dlp:
+    needs: iso8601
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cloning the `yt-dlp`
+        working-directory: ubuntu2404/scripts
+        run: |
+          curl -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+
   build:
     needs: PreCheck_Dockerfile_ubuntu_scripts
     runs-on: ubuntu-latest
