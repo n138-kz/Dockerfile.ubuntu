@@ -113,7 +113,7 @@ jobs:
       - name: Cloning the `yt-dlp`
         working-directory: ubuntu2404/scripts
         run: |
-          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
       - name: Display the Tree
         working-directory: ubuntu2404

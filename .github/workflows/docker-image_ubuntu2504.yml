@@ -87,11 +87,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Creating the directory=scripts
-        working-directory: ubuntu2404
+        working-directory: ubuntu2504
         run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
-        working-directory: ubuntu2404/scripts
+        working-directory: ubuntu2504/scripts
         run: |
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
@@ -117,7 +117,7 @@ jobs:
       - name: Cloning the `yt-dlp`
         working-directory: ubuntu2504/scripts
         run: |
-          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
       - name: Display the Tree
         working-directory: ubuntu2504
