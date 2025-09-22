@@ -115,6 +115,7 @@ jobs:
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
 
       - name: Display the Tree
+        working-directory: ubuntu2204
         run: tree -a
 
       - name: Build the Image
