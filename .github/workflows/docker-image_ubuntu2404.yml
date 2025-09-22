@@ -85,7 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Creating the directory=scripts
+      - name: Creating the directory=${BASEDIR}/scripts
         working-directory: ${BASEDIR}
         run: mkdir scripts
 
