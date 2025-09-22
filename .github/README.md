@@ -48,8 +48,9 @@
 
 | | Released | End of Standard<br>Support | End of Ubuntu<br>Pro Support | End of Legacy<br>Support |
 |--------|:------:|:------:|:------:|:------:|
+| 25.10 (25.10) | Oct 2025 | Jul 2026 | | |
 | 25.04 (Plucky Puffin) | Apr 2025 | Jan 2026 | | |
-| 24.10 (Oracular Oriole) | Oct 2024 | 10th July 2025<br>[***EOL***](https://fridge.ubuntu.com/2025/07/10/ubuntu-24-10-oracular-oriole-reached-end-of-life-on-10th-july-2025/) | | |
+| 24.10 (Oracular Oriole) | Oct 2024 | 10th Jul 2025<br>[***EOL***](https://fridge.ubuntu.com/2025/07/10/ubuntu-24-10-oracular-oriole-reached-end-of-life-on-10th-july-2025/) | | |
 | 24.04 LTS (Noble Numbat) | Apr 2024 | Apr 2029 | Apr 2034 | Apr 2036 |
 | 22.04 LTS (Jammy Jellyfish) | Apr 2022 | Apr 2027 | Apr 2032 | Apr 2034 | 
 
@@ -58,7 +59,6 @@
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://docker.com/)Docker Hub](https://hub.docker.com/r/n138kz/ubuntu/tags) ![Docker Image Version](https://img.shields.io/docker/v/n138kz/ubuntu)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com/)ubuntu2204](n138-kz/ubuntu2204)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com/)ubuntu2404](n138-kz/ubuntu2404)
-- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com/)ubuntu2410](n138-kz/ubuntu2410)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com/)ubuntu2504](n138-kz/ubuntu2504)
 
 ## Scripts

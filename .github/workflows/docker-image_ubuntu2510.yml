@@ -1,4 +1,4 @@
-name: Docker Container for Ubuntu 24.04 LTS
+name: Docker Container for Ubuntu 25.10
 
 on:
   workflow_dispatch:
@@ -14,8 +14,12 @@ on:
         type: boolean
   push:
     paths:
-      - "ubuntu2404/**"
-      - ".github/workflows/docker-image_ubuntu2404.yml"
+      - "ubuntu2510/**"
+      - ".github/workflows/docker-image_ubuntu2510.yml"
+  schedule:
+    - cron: "0 5 1 * *"
+    - cron: "0 5 10 * *"
+    - cron: "0 5 20 * *"
 
 permissions:
   contents: read
@@ -69,7 +73,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: ubuntu2404
+        working-directory: ubuntu2510
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
@@ -83,11 +87,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Creating the directory=scripts
-        working-directory: ubuntu2404
+        working-directory: ubuntu2510
         run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
-        working-directory: ubuntu2404/scripts
+        working-directory: ubuntu2510/scripts
         run: |
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
@@ -106,39 +110,39 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: ubuntu2404
+        working-directory: ubuntu2510
         run: |
           git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
-        working-directory: ubuntu2404/scripts
+        working-directory: ubuntu2510/scripts
         run: |
           curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
 
       - name: Display the Tree
-        working-directory: ubuntu2404
+        working-directory: ubuntu2510
         run: tree -a
 
       - name: Build the Image
-        working-directory: ubuntu2404
+        working-directory: ubuntu2510
         run: |
           docker build \
           --no-cache \
           --progress=plain \
           --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
           --tag ${{ vars.docker_credential_username }}/ubuntu:buildat_$(date +%Y%m%d) \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:lts \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:lts-latest \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:24 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:2404 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:24.04 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:dev \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:dev-latest \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:25 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:2510 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:25.10 \
           .
 
       - name: Inspect the Image
-        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2404 | jq
+        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2510 | jq
 
       - name: Check env
-        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2404 env
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2510 env
 
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
