@@ -79,7 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Creating the directory: scripts
+      - name: Creating the directory=scripts
         working-directory: ubuntu2404
         run: mkdir scripts
 
