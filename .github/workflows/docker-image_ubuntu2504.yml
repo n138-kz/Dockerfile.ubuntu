@@ -17,8 +17,8 @@ on:
         type: boolean
   push:
     paths:
-      - "${BASEDIR}/**"
-      - ".github/workflows/docker-image_${BASEDIR}.yml"
+      - "ubuntu2504/**"
+      - ".github/workflows/docker-image_ubuntu2504.yml"
   schedule:
     - cron: "0 5 1 * *"
     - cron: "0 5 10 * *"

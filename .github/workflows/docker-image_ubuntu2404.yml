@@ -17,8 +17,8 @@ on:
         type: boolean
   push:
     paths:
-      - "${BASEDIR}/**"
-      - ".github/workflows/docker-image_${BASEDIR}.yml"
+      - "ubuntu2404/**"
+      - ".github/workflows/docker-image_ubuntu2404.yml"
 
 permissions:
   contents: read
