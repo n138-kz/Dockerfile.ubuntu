@@ -82,6 +82,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Creating the directory: scripts
+        working-directory: ubuntu2404
+        run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
         working-directory: ubuntu2404/scripts
