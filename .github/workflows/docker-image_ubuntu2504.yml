@@ -66,6 +66,17 @@ jobs:
           echo "::notice title=ISO 8601 Date::The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
           echo "The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
 
+  Dockerfile_ubuntu_scripts:
+    needs: iso8601
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cloning the `Dockerfile.ubuntu.scripts`
+        working-directory: ubuntu2504
+        run: |
+          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv Dockerfile.ubuntu.scripts scripts
+
   build:
     needs: iso8601
     runs-on: ubuntu-latest
