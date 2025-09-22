@@ -46,9 +46,6 @@ RUN echo '' >> /etc/bashrc ; \
 # https://rclone.org/install/
 RUN set -x && curl -sS https://rclone.org/install.sh | bash
 
-# yt-dlp
-RUN set -x && curl -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o /usr/local/bin/yt-dlp && chmod a+rx /usr/local/bin/yt-dlp
-
 # scripts
 COPY scripts/* /usr/bin/
 RUN chmod -R a+x /usr/bin/

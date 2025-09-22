@@ -62,12 +62,62 @@ jobs:
           echo "::notice title=ISO 8601 Date::The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
           echo "The current ISO 8601 date is: ${{ steps.set_date.outputs.iso_date }}"
 
-  build:
+  PreCheck_Dockerfile_ubuntu_scripts:
     needs: iso8601
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cloning the `Dockerfile.ubuntu.scripts`
+        working-directory: ubuntu2404
+        run: |
+          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
+
+      - name: Display the Tree
+        run: tree -a
+
+  PreCheck_yt-dlp:
+    needs: iso8601
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Creating the directory=scripts
+        working-directory: ubuntu2404
+        run: mkdir scripts
+
+      - name: Cloning the `yt-dlp`
+        working-directory: ubuntu2404/scripts
+        run: |
+          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+
+      - name: Display the Tree
+        run: tree -a
+
+  build:
+    needs: 
+      - iso8601
+      - PreCheck_Dockerfile_ubuntu_scripts
+      - PreCheck_yt-dlp
+
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Cloning the `Dockerfile.ubuntu.scripts`
+        working-directory: ubuntu2404
+        run: |
+          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
+
+      - name: Cloning the `yt-dlp`
+        working-directory: ubuntu2404/scripts
+        run: |
+          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.01.26/yt-dlp -o yt-dlp
+
+      - name: Display the Tree
+        working-directory: ubuntu2404
+        run: tree -a
 
       - name: Build the Image
         working-directory: ubuntu2404
@@ -76,6 +126,7 @@ jobs:
           --no-cache \
           --progress=plain \
           --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:buildat_$(date +%s) \
           --tag ${{ vars.docker_credential_username }}/ubuntu:24 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:2404 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:24.04 \
