@@ -97,6 +97,7 @@ jobs:
   build:
     needs: 
       - PreCheck_Dockerfile_ubuntu_scripts
+      - PreCheck_yt-dlp
 
     runs-on: ubuntu-latest
 
