@@ -79,6 +79,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Display the Tree
+        run: tree -a
 
       - name: Build the Image
         working-directory: ubuntu2404
