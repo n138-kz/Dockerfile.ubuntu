@@ -48,7 +48,7 @@
 
 | | Released | End of Standard<br>Support | End of Ubuntu<br>Pro Support | End of Legacy<br>Support |
 |--------|:------:|:------:|:------:|:------:|
-| 25.10 (25.10) | Oct 2025 | Jul 2026 | | |
+| 25.10 (Questing) | Oct 2025 | Jul 2026 | | |
 | 25.04 (Plucky Puffin) | Apr 2025 | Jan 2026 | | |
 | 24.10 (Oracular Oriole) | Oct 2024 | 10th Jul 2025<br>[***EOL***](https://fridge.ubuntu.com/2025/07/10/ubuntu-24-10-oracular-oriole-reached-end-of-life-on-10th-july-2025/) | | |
 | 24.04 LTS (Noble Numbat) | Apr 2024 | Apr 2029 | Apr 2034 | Apr 2036 |
