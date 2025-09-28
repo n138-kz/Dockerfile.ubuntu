@@ -22,6 +22,7 @@ RUN set -x && apt-get install -y rename
 RUN set -x && apt-get install -y apt-utils
 RUN set -x && apt-get install -y tcpdump
 RUN set -x && apt-get install -y cifs-utils
+RUN set -x && apt-get install -y dnsutils
 RUN set -x && apt-get install -y libheif-examples
 RUN set -x && apt-get install -y ffmpeg
 RUN set -x && apt-get install -y libavif-*
