@@ -19,6 +19,7 @@ RUN set -x && apt-get install -y vim
 RUN set -x && apt-get install -y less
 RUN set -x && apt-get install -y rsync
 RUN set -x && apt-get install -y rename
+RUN set -x && apt-get install -y tree
 RUN set -x && apt-get install -y apt-utils
 RUN set -x && apt-get install -y tcpdump
 RUN set -x && apt-get install -y cifs-utils
