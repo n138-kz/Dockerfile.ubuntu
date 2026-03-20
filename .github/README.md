@@ -41,7 +41,7 @@
 
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile](https://github.com/n138-kz/Dockerfile) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu)](https://github.com/n138-kz/Dockerfile)
 - [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile.ubuntu](https://github.com/n138-kz/Dockerfile.ubuntu) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu)](https://github.com/n138-kz/Dockerfile.ubuntu)
-- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile.ubuntu](https://github.com/n138-kz/Dockerfile.ubuntu.scripts) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu.scripts)](https://github.com/n138-kz/Dockerfile.ubuntu.scripts)
+- [![](https://www.google.com/s2/favicons?size=64&domain=https://github.com)Dockerfile.ubuntu.scripts](https://github.com/n138-kz/Dockerfile.ubuntu.scripts) [![GitHub last commit](https://img.shields.io/github/last-commit/n138-kz/Dockerfile.ubuntu.scripts)](https://github.com/n138-kz/Dockerfile.ubuntu.scripts)
 
 ## lifecycle
 
