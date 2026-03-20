@@ -50,8 +50,8 @@ RUN echo '' >> /etc/bashrc ; \
 RUN set -x && curl -sS https://rclone.org/install.sh | bash
 
 # scripts
-COPY scripts/* /usr/bin/
-RUN chmod -R a+x /usr/bin/
+COPY scripts/* /usr/local/bin/
+RUN chmod -R a+x /usr/local/bin/
 
 # cleanup
 RUN set -x && apt-get autoremove -y
