@@ -140,6 +140,9 @@ jobs:
       - name: Check env
         run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2504 env
 
+      - name: Print PATH
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2504 printenv PATH
+
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
 
