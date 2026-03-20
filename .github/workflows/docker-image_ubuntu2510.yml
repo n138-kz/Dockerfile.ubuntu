@@ -111,8 +111,7 @@ jobs:
       
       - name: Cloning the `Dockerfile.ubuntu.scripts`
         working-directory: ubuntu2510
-        run: |
-          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
+        run: git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
         working-directory: ubuntu2510/scripts
