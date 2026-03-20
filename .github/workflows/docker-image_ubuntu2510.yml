@@ -110,6 +110,7 @@ jobs:
       
       - name: Cloning the `Dockerfile.ubuntu.scripts`
         working-directory: ubuntu2510
+        # scripts/.* is for removing .git and .github folders
         run: git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
