@@ -6,6 +6,8 @@ WORKDIR /tmp
 ENV DEBIAN_FRONTEND=noninteractive
 ENV build_at=${build_at}
 
+# #25-apt-upgrade-20260406
+
 RUN set -x && apt-get update && apt-get upgrade -y
 RUN set -x && apt-get install -y man
 RUN set -x && apt-get install -y unzip unar file
