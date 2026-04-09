@@ -128,7 +128,6 @@ jobs:
           --tag ${{ vars.docker_credential_username }}/ubuntu:25 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:2504 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:25.04 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu \
           .
 
       - name: Inspect the Image
