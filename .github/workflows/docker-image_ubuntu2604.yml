@@ -17,10 +17,6 @@ on:
       - "ubuntu2604/**"
       - ".github/workflows/docker-image_ubuntu2604.yml"
       - "https://github.com/n138-kz/Dockerfile.ubuntu.scripts/**"
-  schedule:
-    - cron: "0 5 1 * *"
-    - cron: "0 5 10 * *"
-    - cron: "0 5 20 * *"
 
 permissions:
   contents: read
