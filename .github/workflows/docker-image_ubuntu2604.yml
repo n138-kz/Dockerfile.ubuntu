@@ -26,6 +26,7 @@ env:
   container-image-tag-name-1: 2604
   container-image-tag-name-2: 26
   container-image-tag-name-3: 26.04
+  yt-dlp-version: 2026.03.17
 
 jobs:
   send_github_context:
@@ -125,8 +126,8 @@ jobs:
         run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
-        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp -o yt-dlp && chmod +x yt-dlp
         working-directory: ${{ env.base-working-directory }}/scripts
+        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.yt-dlp-version }}/yt-dlp -o yt-dlp && chmod +x yt-dlp
 
       - name: Display the Tree
         run: tree -a
@@ -148,8 +149,8 @@ jobs:
         run: git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
-        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp -o yt-dlp && chmod +x yt-dlp
         working-directory: ${{ env.base-working-directory }}/scripts
+        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/${{ env.yt-dlp-version }}/yt-dlp -o yt-dlp && chmod +x yt-dlp
 
       - name: Display the Tree
         working-directory: ${{ env.base-working-directory }}
