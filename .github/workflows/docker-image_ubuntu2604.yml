@@ -1,4 +1,4 @@
-name: Docker Container for Ubuntu 26.04
+name: Docker Container for Ubuntu 26.04 LTS
 
 on:
   workflow_dispatch:
