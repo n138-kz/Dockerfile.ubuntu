@@ -16,10 +16,6 @@ on:
     paths:
       - "ubuntu2510/**"
       - ".github/workflows/docker-image_ubuntu2510.yml"
-  schedule:
-    - cron: "0 5 1 * *"
-    - cron: "0 5 10 * *"
-    - cron: "0 5 20 * *"
 
 permissions:
   contents: read
