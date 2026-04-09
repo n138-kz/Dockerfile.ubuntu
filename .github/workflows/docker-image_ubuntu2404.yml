@@ -16,6 +16,7 @@ on:
     paths:
       - "ubuntu2404/**"
       - ".github/workflows/docker-image_ubuntu2404.yml"
+      - "https://github.com/n138-kz/Dockerfile.ubuntu.scripts/**"
 
 permissions:
   contents: read
