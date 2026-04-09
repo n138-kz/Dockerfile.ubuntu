@@ -41,7 +41,7 @@ jobs:
       - name: Upload file
         uses: actions/upload-artifact@v4
         with:
-          name: payload
+          name: payload-env
           path: payload.json
 
       - name: Export to json
@@ -50,7 +50,7 @@ jobs:
       - name: Upload file
         uses: actions/upload-artifact@v4
         with:
-          name: payload
+          name: payload-github
           path: payload.json
 
       - name: Export to json
@@ -59,7 +59,7 @@ jobs:
       - name: Upload file
         uses: actions/upload-artifact@v4
         with:
-          name: payload
+          name: payload-secrets
           path: payload.json
 
   print_dockerhub_credential:
