@@ -158,3 +158,4 @@ jobs:
 
       - name: Image push
         run: docker push --all-tags ${{ vars.docker_credential_username }}/ubuntu
+
