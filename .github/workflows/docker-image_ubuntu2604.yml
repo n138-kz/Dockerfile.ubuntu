@@ -23,6 +23,9 @@ permissions:
 
 env:
   base-working-directory: ubuntu2604
+  container-image-tag-name-1: 2604
+  container-image-tag-name-2: 26
+  container-image-tag-name-3: 26.04
 
 jobs:
   send_github_context:
@@ -160,19 +163,19 @@ jobs:
           --progress=plain \
           --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
           --tag ${{ vars.docker_credential_username }}/ubuntu:buildat_$(date +%Y%m%d) \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:26 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:2604 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:26.04 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-1 }} \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-2 }} \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-3 }} \
           .
 
       - name: Inspect the Image
-        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2604 | jq
+        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-1 }} | jq
 
       - name: Check env
-        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2604 env
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-1 }} env
 
       - name: Print PATH
-        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2604 printenv PATH
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:${{ env.container-image-tag-name-1 }} printenv PATH
 
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
