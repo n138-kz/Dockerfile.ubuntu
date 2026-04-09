@@ -125,8 +125,6 @@ jobs:
           --progress=plain \
           --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
           --tag ${{ vars.docker_credential_username }}/ubuntu:buildat_$(date +%Y%m%d) \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:dev \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:dev-latest \
           --tag ${{ vars.docker_credential_username }}/ubuntu:25 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:2510 \
           --tag ${{ vars.docker_credential_username }}/ubuntu:25.10 \
