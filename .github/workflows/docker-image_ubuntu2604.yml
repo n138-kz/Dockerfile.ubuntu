@@ -1,4 +1,4 @@
-name: Docker Container for Ubuntu 22.04 LTS
+name: Docker Container for Ubuntu 26.04
 
 on:
   workflow_call:
@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       gh_actor_message:
-        default: Test RUN
+        default: Test
         required: true
         description: Actor message
         type: string
@@ -23,8 +23,12 @@ on:
         type: boolean
   push:
     paths:
-      - "ubuntu2204/**"
-      - ".github/workflows/docker-image_ubuntu2204.yml"
+      - "ubuntu2604/**"
+      - ".github/workflows/docker-image_ubuntu2604.yml"
+  schedule:
+    - cron: "0 5 1 * *"
+    - cron: "0 5 10 * *"
+    - cron: "0 5 20 * *"
 
 permissions:
   contents: read
@@ -78,9 +82,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: ubuntu2204
-        run: |
-          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
+        working-directory: ubuntu2604
+        run: git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git scripts && rm -fr scripts/.*
 
       - name: Display the Tree
         run: tree -a
@@ -92,13 +95,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Creating the directory=scripts
-        working-directory: ubuntu2204
+        working-directory: ubuntu2604
         run: mkdir scripts
 
       - name: Cloning the `yt-dlp`
-        working-directory: ubuntu2204/scripts
-        run: |
-          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
+        working-directory: ubuntu2604/scripts
+        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp -o yt-dlp && chmod +x yt-dlp
 
       - name: Display the Tree
         run: tree -a
@@ -115,38 +117,41 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Cloning the `Dockerfile.ubuntu.scripts`
-        working-directory: ubuntu2204
-        run: |
-          git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git && mv -v Dockerfile.ubuntu.scripts scripts && rm -fr scripts/.*
+        working-directory: ubuntu2604
+        # scripts/.* is for removing .git and .github folders
+        run: git clone https://github.com/n138-kz/Dockerfile.ubuntu.scripts.git scripts && rm -fr scripts/.*
 
       - name: Cloning the `yt-dlp`
-        working-directory: ubuntu2204/scripts
-        run: |
-          curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp -o yt-dlp
+        working-directory: ubuntu2604/scripts
+        run: curl -s -L https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp -o yt-dlp && chmod +x yt-dlp
 
       - name: Display the Tree
-        working-directory: ubuntu2204
+        working-directory: ubuntu2604
         run: tree -a
 
       - name: Build the Image
-        working-directory: ubuntu2204
+        working-directory: ubuntu2604
         run: |
           docker build \
           --no-cache \
           --progress=plain \
           --build-arg build_at=${{ needs.iso8601.outputs.iso_date }} \
           --tag ${{ vars.docker_credential_username }}/ubuntu:buildat_$(date +%Y%m%d) \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:lts \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:22 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:2204 \
-          --tag ${{ vars.docker_credential_username }}/ubuntu:22.04 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:dev \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:dev-latest \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:26 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:2604 \
+          --tag ${{ vars.docker_credential_username }}/ubuntu:26.04 \
           .
 
       - name: Inspect the Image
-        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2204 | jq
+        run: docker inspect ${{ vars.docker_credential_username }}/ubuntu:2604 | jq
 
       - name: Check env
-        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2204 env
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2604 env
+
+      - name: Print PATH
+        run: docker run --rm ${{ vars.docker_credential_username }}/ubuntu:2604 printenv PATH
 
       - name: docker login
         run: docker login --username ${{ vars.docker_credential_username }} --password ${{ secrets.docker_credential_password }}
