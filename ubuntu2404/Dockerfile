@@ -55,5 +55,3 @@ RUN chmod -R a+x /usr/local/bin/
 
 # cleanup
 RUN set -x && apt-get autoremove -y
-
-#30
