@@ -49,6 +49,8 @@ RUN echo '' >> /etc/bashrc ; \
 # https://rclone.org/install/
 RUN set -x && curl -sS https://rclone.org/install.sh | bash
 
+echo 'apt -y update' | tee -a /etc/profile
+
 # scripts
 COPY scripts/* /usr/local/bin/
 RUN chmod -R a+x /usr/local/bin/
