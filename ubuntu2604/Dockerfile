@@ -49,6 +49,7 @@ RUN echo '' >> /etc/bashrc ; \
 # https://rclone.org/install/
 RUN set -x && curl -sS https://rclone.org/install.sh | bash
 
+# Add apt update command to Dockerfile
 echo 'apt -y update' | tee -a /etc/profile
 
 # scripts
