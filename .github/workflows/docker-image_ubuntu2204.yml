@@ -26,7 +26,7 @@ env:
   container-image-tag-name-1: 2204
   container-image-tag-name-2: 22
   container-image-tag-name-3: 22.04
-  yt-dlp-version: 2026.03.17
+  yt-dlp-version: 2026.08.19
 
 jobs:
   send_github_context:
