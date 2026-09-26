@@ -27,7 +27,7 @@ env:
   container-image-tag-name-2: 24
   container-image-tag-name-3: 24.04
   yt-dlp-version: 2026.08.19
-  manual-build-serial: 2026092101
+  manual-build-serial: 2026092601
 
 jobs:
   send_github_context:
