@@ -14,7 +14,7 @@ RUN set -x && apt-get install -y wget curl git
 RUN set -x && apt-get install -y xz-utils
 RUN set -x && apt-get install -y jq
 RUN set -x && apt-get install -y iproute2 net-tools
-RUN set -x && apt-get install -y python3-pip python3-all-venv
+RUN set -x && apt-get install -y python3-pip python3-all-venv python3-full
 RUN set -x && apt-get install -y vim
 RUN set -x && apt-get install -y less
 RUN set -x && apt-get install -y rsync
